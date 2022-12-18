@@ -1,7 +1,7 @@
-/// <reference types="@fastly/js-compute" />
+addEventListener("fetch", (event) => {
+  let geo = event.client.geo;
 
-addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
+  let respBody = `You are in ${geo.country_name}`;
 
-async function handleRequest(event) {
-  return new Response("OK", { status: 200 });
-}
+  event.respondWith(new Response(respBody));
+});
